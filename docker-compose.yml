@@ -3,43 +3,43 @@ version: "3"
 services:
   mysql:
     container_name: mysql
-    image: mysql:5.5.60
+    image: mysql:5.7
     restart: always
     volumes:
-      - ./mysql/data:/var/lib/mysql
-      - ./mysql/conf/mysqld.conf:/etc/mysql/mysql.conf.d/mysqld.cnf
+    - ./mysql/data:/var/lib/mysql
+    - ./mysql/conf/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf
     ports:
-      - "6603:3306"
+    - "6603:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=adminadmin
+    - MYSQL_ROOT_PASSWORD=adminadmin
   nginx:
     container_name: nginx
     restart: always
     image: nginx:1.13
     ports:
-      - 80:80
-      - 443:443
-      - 5050:5050
-      - 4040:4040
+    - 80:80
+    - 443:443
+    - 5050:5050
+    - 4040:4040
     volumes:
-      - ./conf/vhosts:/etc/nginx/conf.d
-      - ./logs:/var/log/nginx
-      - ./www/:/var/www/
+    - ./conf/vhosts:/etc/nginx/conf.d
+    - ./logs:/var/log/nginx
+    - ./www/:/var/www/
     links:
-      - tomcat:t1
+    - tomcat:t1
   tomcat:
     container_name: tomcat
     restart: always
     image: tomcat:9.0
     ports:
-      - 8080:8080
-      - 8009:8009
+    - 8080:8080
+    - 8009:8009
     volumes:
-      - ./webapps/solo.war:/usr/local/tomcat/webapps/solo.war
-      - ./conf/server.xml:/usr/local/tomcat/conf/server.xml
-      - ./logs:/usr/local/tomcat/logs
+    - ./webapps/ofcms-admin.war:/usr/local/tomcat/webapps/ofcms-admin.war
+    - ./conf/server.xml:/usr/local/tomcat/conf/server.xml
+    - ./logs:/usr/local/tomcat/logs
     links:
-      - mysql:m1
+    - mysql:m1
 
 
 
