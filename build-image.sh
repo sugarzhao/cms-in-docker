@@ -12,7 +12,7 @@ echo '$                                                           $'
 echo '============================================================='
 echo '.'
 
-docker pull mysql:5.5.60
+docker pull mysql:5.7
 
 docker pull nginx:1.13
 

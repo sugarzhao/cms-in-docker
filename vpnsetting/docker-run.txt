@@ -1,0 +1,15 @@
+
+
+docker pull oddrationale/docker-shadowsocks
+
+
+docker run -d -p 2390:2390 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 2390 -k XXX -m aes-256-cfb
+
+-d参数允许 docker 常驻后台运行
+-p来指定要映射的端口，这里端口号统一保持一致即可。例如：XXX
+-s服务器 IP 地址，不用动
+-k后面设置你的 VPN 的密码，比如：XXX
+-m指定加密方式
+运行docker ps -a查看容器是否已成功运行起来了。
+
+VPN 端口号：2390
